@@ -11,26 +11,17 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import datetime
 
-import environ
 from pathlib import Path
-from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 APPS_DIR = BASE_DIR / "apps"
 
-env = environ.Env()
-
-READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
-
-if READ_DOT_ENV_FILE:
-    # OS environment variables take precedence over variables from .env
-    env.read_env(str(BASE_DIR / ".env"))
 
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = env.bool("DJANGO_DEBUG", True)
+DEBUG = True
 # Local time zone. Choices are
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # though not all of them may be available with every OS.
@@ -39,10 +30,8 @@ TIME_ZONE = "Asia/Tashkent"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-SECRET_KEY = env(
-    "DJANGO_SECRET_KEY",
-    default="6GCZ72GBPiSodPXfSmSyRRC736tAon75jKsN3KSbZJP2ryKx4RSV4ksNM0p8gIAW",
-)
+SECRET_KEY = "6GCZ72GBPiSodPXfSmSyRRC736tAon75jKsN3KSbZJP2ryKx4RSV4ksNM0p8gIAW"
+
 
 ALLOWED_HOSTS = []
 
@@ -87,8 +76,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

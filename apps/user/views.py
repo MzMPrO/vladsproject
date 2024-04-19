@@ -7,16 +7,16 @@ from rest_framework.decorators import action
 from rest_framework.generics import CreateAPIView
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.serializers import BaseSerializer
 from rest_framework.viewsets import GenericViewSet
-
-from apps.user.models import User, getKey
+from django.contrib.auth import get_user_model
+from apps.user.models import getKey
 from apps.user.serializer import (UserRegisterSerializer, CheckActivationCodeSerializer, ResetPasswordSerializer,
                                   ResetPasswordConfirmSerializer, UserSerializer)
-
-
+User = get_user_model()
 
 @extend_schema(tags=["auth"])
 class UserRegisterCreateAPIView(CreateAPIView):
@@ -124,7 +124,9 @@ class ResetPasswordConfirmView(CreateAPIView):
 @extend_schema(tags=["user"])
 class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericViewSet):
     serializer_class = UserSerializer
+    queryset = User.objects.all()
     lookup_field = "id"
+    permission_classes = [IsAuthenticated]
 
     @action(detail=False)
     def me(self, request):

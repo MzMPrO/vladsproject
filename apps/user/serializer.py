@@ -13,12 +13,24 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ("first_name", "email", "username", "password")
+        fields = [
+            'username', 'email',
+            "first_name", "last_name",
+            'middle_name', 'phone_number',
+            'email', 'bio', 'date_of_birth',
+            'gender', "password"
+        ]
 
     def validate(self, attrs):
         activate_code = random.randint(100000, 999999)
         user = User(
             first_name=attrs['first_name'],
+            last_name=attrs['last_name'],
+            middle_name=attrs['middle_name'],
+            phone_number=attrs['phone_number'],
+            date_of_birth=attrs['date_of_birth'],
+            bio=attrs['bio'],
+            gender=attrs['gender'],
             email=attrs['email'],
             username=attrs['username'],
             password=make_password(attrs['password']),
@@ -32,7 +44,6 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             },
             timeout=300
         )
-        print(getKey(key=attrs['email']))
         send_mail(
             subject="Subject here",
             message=f"Your activate code.\n{activate_code}",
@@ -71,4 +82,10 @@ class ResetPasswordConfirmSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', "first_name"]
+        fields = [
+            'id', 'username', 'email',
+            "first_name", "last_name",
+            'middle_name', 'phone_number',
+            'email', 'bio', 'date_of_birth',
+            'gender'
+        ]

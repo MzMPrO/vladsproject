@@ -1,0 +1,11 @@
+Django==4.2.4  # pyup: < 5.0  # https://www.djangoproject.com/
+django-environ==0.10.0  # https://github.com/joke2k/django-environ
+django-jazzmin==2.6.0 # https://github.com/farridav/django-jazzmin
+django-filter==23.3 # https://github.com/carltongibson/django-filter/tree/main
+
+
+drf-spectacular==0.26.4  # https://github.com/tfranzel/drf-spectacular
+djangorestframework==3.14.0  # https://github.com/encode/django-rest-framework
+djangorestframework-simplejwt==5.2.2 # https://github.com/jazzband/djangorestframework-simplejwt
+django-import-export==3.3.8
+dj-rest-auth==5.0.1 # https://github.com/iMerica/dj-rest-auth

@@ -8,4 +8,7 @@ drf-spectacular==0.26.4  # https://github.com/tfranzel/drf-spectacular
 djangorestframework==3.14.0  # https://github.com/encode/django-rest-framework
 djangorestframework-simplejwt==5.2.2 # https://github.com/jazzband/djangorestframework-simplejwt
 django-import-export==3.3.8
+django-mptt==0.16.0 # https://github.com/django-mptt/django-mptt/
 dj-rest-auth==5.0.1 # https://github.com/iMerica/dj-rest-auth
+Unidecode==1.3.7 # https://pypi.org/project/Unidecode/
+django-mptt-admin==2.6.1

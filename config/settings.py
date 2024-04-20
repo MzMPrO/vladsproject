@@ -38,7 +38,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 DJANGO_APPS = [
-    "jazzmin",
+    # "jazzmin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,7 +47,9 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 THIRD_PARTY_APPS = [
-    # "django-import-export",
+    "import_export",
+    "mptt",
+    'django_mptt_admin',
     "django_filters",
     "drf_spectacular",
     "rest_framework",
@@ -56,7 +58,8 @@ THIRD_PARTY_APPS = [
 ]
 MY_APPS = [
     'apps.core',
-    'apps.user'
+    'apps.user',
+    'apps.categories'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + MY_APPS
@@ -134,11 +137,11 @@ USE_TZ = True
 # STATIC
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = str(BASE_DIR / "staticfiles")
+# STATIC_ROOT = str(BASE_DIR / "static")
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [str(APPS_DIR / "static")]
+STATICFILES_DIRS = [str(BASE_DIR / "static")]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
